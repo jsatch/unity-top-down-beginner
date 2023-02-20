@@ -1,3 +1,4 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,8 +21,22 @@ public class ActorMovimiento : MonoBehaviour
             Input.GetAxis("Horizontal"),
             0f,
             Input.GetAxis("Vertical")
-        ).normalized;
+        );
 
-        mRb.MovePosition(transform.position + (movVec * Time.deltaTime * velocidad));
+        //mRb.MovePosition(transform.position + (movVec * Time.deltaTime * velocidad));
+        mRb.MovePosition(transform.position + transform.forward * movVec.z * Time.deltaTime * velocidad);
+
+        transform.Rotate(0f, 45f * movVec.x * Time.deltaTime , 0f);
+
+
+       /* movVec = Quaternion.AngleAxis(Camera.main.transform.rotation.eulerAngles.y, Vector3.up) * movVec;
+        movVec.Normalize();
+
+
+        if (movVec != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(movVec, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 90f * Time.deltaTime);
+        }*/
     }
 }
