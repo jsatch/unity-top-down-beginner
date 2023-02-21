@@ -12,7 +12,7 @@ public class BalaMovimiento : MonoBehaviour
     {
         mRb = GetComponent<Rigidbody>();
         float mass = mRb.mass;
-        mRb.AddForce(transform.up * mass * aceleracion, ForceMode.Impulse);
+        mRb.AddForce(transform.forward * mass * aceleracion, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
